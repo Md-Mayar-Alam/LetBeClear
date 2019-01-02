@@ -31,4 +31,6 @@ public class ProfileController {
 	{
 		return profileService.editProfile(registerRequest);
 	}
+	
+	//test
 }
