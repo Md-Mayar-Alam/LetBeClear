@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+/*import org.apache.log4j.Logger;*/
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -17,9 +17,9 @@ public class JwtAuthenticationFailureHandler implements AuthenticationFailureHan
 	{
 		System.out.println("Inside JwtAuthenticationFailureHandler onAuthenticationFailure()");
 		
-		Logger logger=Logger.getLogger(JwtAuthenticationFailureHandler.class);
+		/* Logger logger=Logger.getLogger(JwtAuthenticationFailureHandler.class); */
 		
-		logger.error(exception);
+		/* logger.error(exception); */
 		
 		//Sending request to /loginFailed because to send Failed message in ResponseSender Object
 		

@@ -14,6 +14,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -51,6 +52,11 @@ public class RepositoryConfiguration
 		dataSource.setPassword(databaseConfiguration.password);
 		
 		return dataSource;
+	}
+	
+	@Bean
+	HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
+		return new HibernateJpaVendorAdapter();
 	}
 	
 	@Bean ForgotPasswordEmailSender forgotPasswordEmailSender()
@@ -104,8 +110,10 @@ public class RepositoryConfiguration
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();//Used to set various features of EntityManagerFactory
 		em.setDataSource(dataSource());	//Setting DataSource Object
 		em.setPackagesToScan("com.letbeclear.model");	//Setting base package to scan same as Spring's component-scan
-		em.setPersistenceProviderClass(HibernatePersistenceProvider.class);	//Set the PersistenceProvider implementation class 
+		/* em.setPersistenceProviderClass(HibernatePersistenceProvider.class); */	//Set the PersistenceProvider implementation class 
 																			//to use for creating the EntityManagerFactory
+		em.setJpaVendorAdapter(hibernateJpaVendorAdapter());
+		
 		em.setJpaProperties(additionalProperties());	//Specify JPA properties, to be passed into
 														//{@code Persistence.createEntityManagerFactory} (if any).
 		

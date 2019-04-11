@@ -52,7 +52,10 @@ public class PostService {
 		users.setUserId(2l);
 		if(postRequest.getPostId()!=0)
 		{
-		UserPost userPost=userPostRepo.findOne(postRequest.getPostId());		//get all the detail about that postId for protecting the data loss
+			/* UserPost userPost=userPostRepo.findOne(postRequest.getPostId()); */		//get all the detail about that postId for protecting the data loss
+		
+		UserPost userPost=userPostRepo.findByPostId(postRequest.getPostId());
+		
 		String imagePath=userPost.getImagePath();
 		String primaryImage=userPost.getPrimaryImage();
 		int noOfImage=userPost.getNoOfImage();
@@ -218,7 +221,7 @@ public class PostService {
 	public int deletePost(PostRequest postRequest) {
 		 
 	long postId=postRequest.getPostId();
-	userPostRepo.delete(postId);
+	userPostRepo.deleteById(postId);
 		return 1;
 	}
 }

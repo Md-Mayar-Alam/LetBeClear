@@ -19,4 +19,6 @@ public interface UserPostRepository extends CrudRepository<UserPost,Long> {
 	public Long getMax();
 	public UserPost findByPostId(Long postId);
 	public List<UserPost> findALLByPostId(Long postId);
+	
+	
 }
